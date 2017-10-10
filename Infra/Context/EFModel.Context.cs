@@ -26,5 +26,8 @@ namespace Infra.Context
         }
     
         public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<Configuracao> Configuracao { get; set; }
+        public virtual DbSet<Perfil> Perfil { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }

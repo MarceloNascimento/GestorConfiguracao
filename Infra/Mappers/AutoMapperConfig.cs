@@ -15,7 +15,10 @@ namespace Infra.Mappers
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.AddProfile<ClientProfile>();               
+                cfg.AddProfile<ClientProfile>();
+                cfg.AddProfile<ConfiguracaoProfile>();
+                cfg.AddProfile<UsuarioProfile>();
+                cfg.AddProfile<PerfilProfile>();
             });
 
         }

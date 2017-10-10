@@ -8,13 +8,13 @@ namespace Infra.Repositories
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    public class ClientRepository : IRepository
+    public class PerfilRepository : IRepository
     {
 
         /// <summary>
         /// Method constructor in here we mapped dto to entitie and reverse by automapper
         /// </summary>
-        public ClientRepository()
+        public PerfilRepository()
         {
 
         }
@@ -24,13 +24,13 @@ namespace Infra.Repositories
         /// </summary>
         public IDTO GetById(int codigo)
         {
-            ClientDTO obj;
+            PerfilDTO obj;
             using (var db = new modelEntities())
             {
                 // Display all Blogs from the database 
-                var query = from b in db.Client where b.codigo == codigo select b;
-                Client Client = query.FirstOrDefault();
-                obj = Mapper.Map<Client, ClientDTO>(Client);
+                var query = from b in db.Perfil where b.codigo == codigo select b;
+                Perfil Perfil = query.FirstOrDefault();
+                obj = Mapper.Map<Perfil, PerfilDTO>(Perfil);
             }
 
 
@@ -45,14 +45,14 @@ namespace Infra.Repositories
         {
             try
             {
-                ClientDTO obj = new ClientDTO();
+                PerfilDTO obj = new PerfilDTO();
                 using (var db = new modelEntities())
                 {
                     // Display all Blogs from the database 
-                    var query = from b in db.Client where b.codigo == codigo select b;
-                    Client client = query.FirstOrDefault();
+                    var query = from b in db.Perfil where b.codigo == codigo select b;
+                    Perfil Perfil = query.FirstOrDefault();
                     //Delete it from memory
-                    db.Client.Remove(client);
+                    db.Perfil.Remove(Perfil);
                     //Save to database\ 
                     db.SaveChanges();
                 }
@@ -69,13 +69,13 @@ namespace Infra.Repositories
         /// </summary>
         public IEnumerable<IDTO> ListAll()
         {
-            IEnumerable<IDTO> AllObj = new List<ClientDTO>();
+            IEnumerable<IDTO> AllObj = new List<PerfilDTO>();
                 using (var db = new modelEntities())
                 {
-                    // Display all Clients from the database 
-                    var query = from b in db.Client select b;
-                    List<Client> list = query.ToList();
-                    AllObj = Mapper.Map<List<Client>, List<ClientDTO>>(list);
+                    // Display all Perfils from the database 
+                    var query = from b in db.Perfil select b;
+                    List<Perfil> list = query.ToList();
+                    AllObj = Mapper.Map<List<Perfil>, List<PerfilDTO>>(list);
 
                 }
 
@@ -99,14 +99,14 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Client client = Mapper.Map<Client>(ValidateBusiness(dto));
+                    Perfil Perfil = Mapper.Map<Perfil>(ValidateBusiness(dto));
 
                     using (var db = new modelEntities())
                     {
                         using (var transaction = db.Database.BeginTransaction())
                         {
-                            // Display all Clients from the database                        
-                            db.Client.Add(client);
+                            // Display all Perfils from the database                        
+                            db.Perfil.Add(Perfil);
                             id = db.SaveChanges();
                             transaction.Commit();
                         }
@@ -132,11 +132,11 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Client client = Mapper.Map<Client>(ValidateBusiness(dto));
+                    Perfil Perfil = Mapper.Map<Perfil>(ValidateBusiness(dto));
                     using (var db = new modelEntities())
                     {
-                        // Display all Clients from the database                        
-                        db.Entry(client).State = System.Data.Entity.EntityState.Modified;
+                        // Display all Perfils from the database                        
+                        db.Entry(Perfil).State = System.Data.Entity.EntityState.Modified;
                         id = db.SaveChanges();
 
                     }
@@ -156,9 +156,9 @@ namespace Infra.Repositories
         /// <param name="dto">a dto which will be validated</param>
         public bool ValidateEntitie(IDTO dto)
         {
-            ClientDTO clientDTO = (ClientDTO)dto;
+            PerfilDTO PerfilDTO = (PerfilDTO)dto;
             bool validated = false;
-            if (string.IsNullOrEmpty(clientDTO.nome) || string.IsNullOrWhiteSpace(clientDTO.nome))
+            if (string.IsNullOrEmpty(PerfilDTO.nome) || string.IsNullOrWhiteSpace(PerfilDTO.nome))
             {
                 throw new Exception("O campo nome é obrigatório");
             }
@@ -175,22 +175,22 @@ namespace Infra.Repositories
         /// <param name="dto">a dto which will be validated</param>
         public IDTO ValidateBusiness(IDTO dto)
         {
-            ClientDTO clientdto = (ClientDTO)dto;
+            PerfilDTO Perfildto = (PerfilDTO)dto;
             bool validated = false;
-            if (!string.IsNullOrEmpty(clientdto.tipo) &&
-                !string.IsNullOrWhiteSpace(clientdto.tipo))
+            if (!string.IsNullOrEmpty(Perfildto.tipo) &&
+                !string.IsNullOrWhiteSpace(Perfildto.tipo))
             {
-                if (clientdto.tipo == "Física")
+                if (Perfildto.tipo == "Física")
                 {
-                    clientdto.CNPJ = "";
+                    Perfildto.CNPJ = "";
                 }
-                else if(clientdto.tipo != "Física")
+                else if(Perfildto.tipo != "Física")
                 {
-                    clientdto.CPF = "";
+                    Perfildto.CPF = "";
                 }
 
             }
-            return clientdto;
+            return Perfildto;
         }
     }
 }

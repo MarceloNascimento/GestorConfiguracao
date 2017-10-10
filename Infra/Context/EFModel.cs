@@ -7,25 +7,3 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Infra.Context
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-
-    public partial class EFModel : DbContext
-    {
-        public EFModel()
-            : base("name=EFModel")
-        {
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-
-        public virtual DbSet<Client> Client { get; set; }
-       
-    }
-}

@@ -45,6 +45,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfiguracaoDTO.cs" />
+    <Compile Include="PerfilDTO.cs" />
+    <Compile Include="UsuarioDTO.cs" />
     <Compile Include="ClientDTO.cs" />
     <Compile Include="IDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

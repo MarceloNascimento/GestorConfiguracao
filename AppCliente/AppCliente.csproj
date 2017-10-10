@@ -143,7 +143,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomeController .cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -159,10 +159,12 @@
     <Content Include="app\controller\ClientCtrl.js" />
     <Content Include="app\Readme.txt" />
     <Content Include="app\services\clientService.js" />
+    <Content Include="app\views\Configuracoes\index.html" />
     <Content Include="app\views\error\404.html" />
     <Content Include="app\views\error\accessDenied.html" />
     <Content Include="app\views\error\doubleApprove.html" />
     <Content Include="app\views\index.html" />
+    <Content Include="app\views\Usuarios\index.html" />
     <Content Include="bower_components\angular-ui-mask\.gitignore" />
     <Content Include="bower_components\angular-ui-mask\demo\index.html" />
     <Content Include="bower_components\angular-ui-mask\dist\mask.js" />
@@ -1165,6 +1167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\common\directives\tmpl\" />
+    <Folder Include="app\views\Perfis\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>

@@ -59,6 +59,9 @@
     <Compile Include="Context\Client.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\Configuracao.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\EFModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -74,9 +77,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EFModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Context\Perfil.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Usuarios.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Mappers\AutoMapperConfig.cs" />
+    <Compile Include="Mappers\PerfilProfile.cs" />
+    <Compile Include="Mappers\ConfiguracaoProfile.cs" />
+    <Compile Include="Mappers\UsuarioProfile.cs" />
     <Compile Include="Mappers\ClientProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\UsuarioRepository.cs" />
+    <Compile Include="Repositories\ConfiguracaoRepository.cs" />
+    <Compile Include="Repositories\PerfilRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
   </ItemGroup>

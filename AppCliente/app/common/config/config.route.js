@@ -13,8 +13,13 @@ app.config(function ($routeProvider, $locationProvider) {
         .when('/', {
             templateUrl: '../app/views/index.html',
             controllerAs: 'vm',
-        })      
-        .when('/404', {
+        }).when('/Configuracoes', {
+            templateUrl: '../app/views/Configuracoes/index.html',
+            controllerAs: 'vm',
+        }).when('/Usuarios', {
+            templateUrl: '../app/views/Usuarios/index.html',
+            controllerAs: 'vm',
+        }).when('/404', {
             templateUrl: 'app/views/Error/404.html',   
             controllerAs: 'vm',
         })

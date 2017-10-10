@@ -1,30 +1,26 @@
 ﻿namespace DTO
 {
-   public class ClientDTO : IDTO
+   public class ConfiguracaoDTO : IDTO
     {
         /// <summary>
-        /// Código of client
+        /// Código do Configuração
         /// </summary>        
         public int Codigo { get; set; }
         /// <summary>
-        /// Nome of client
+        /// Nome do Configuração
         /// </summary> 
         public string Nome { get; set; }
         /// <summary>
         /// tipo of client "fisica / juridica"
         /// </summary> 
-        public string Tipo { get; set; }
+        public string Valor { get; set; }
         /// <summary>
-        /// CPF of client
+        /// id do perfil da configuração  no banco
         /// </summary> 
-        public string CPF { get; set; }
+        public int PerfilId { get; set; }
         /// <summary>
-        /// CNPJ of client
+        /// Descrição do perfil da configuração no banco
         /// </summary> 
-        public string CNPJ { get; set; }
-        /// <summary>
-        /// telephone number from client
-        /// </summary> 
-        public string Telefone { get; set; }
+        public string PerfilNome { get; set; }
     }
 }

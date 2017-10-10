@@ -8,13 +8,13 @@ namespace Infra.Repositories
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    public class ClientRepository : IRepository
+    public class UsuarioRepository : IRepository
     {
 
         /// <summary>
         /// Method constructor in here we mapped dto to entitie and reverse by automapper
         /// </summary>
-        public ClientRepository()
+        public UsuarioRepository()
         {
 
         }
@@ -24,13 +24,13 @@ namespace Infra.Repositories
         /// </summary>
         public IDTO GetById(int codigo)
         {
-            ClientDTO obj;
+            UsuarioDTO obj;
             using (var db = new modelEntities())
             {
                 // Display all Blogs from the database 
-                var query = from b in db.Client where b.codigo == codigo select b;
-                Client Client = query.FirstOrDefault();
-                obj = Mapper.Map<Client, ClientDTO>(Client);
+                var query = from b in db.Usuarios where b.codigo == codigo select b;
+                Usuarios usuario = query.FirstOrDefault();
+                obj = Mapper.Map<Usuarios, UsuarioDTO>(usuario);
             }
 
 
@@ -45,14 +45,14 @@ namespace Infra.Repositories
         {
             try
             {
-                ClientDTO obj = new ClientDTO();
+                UsuarioDTO obj = new UsuarioDTO();
                 using (var db = new modelEntities())
                 {
                     // Display all Blogs from the database 
-                    var query = from b in db.Client where b.codigo == codigo select b;
-                    Client client = query.FirstOrDefault();
+                    var query = from b in db.Usuarios where b.codigo == codigo select b;
+                    Usuarios Usuario = query.FirstOrDefault();
                     //Delete it from memory
-                    db.Client.Remove(client);
+                    db.Usuarios.Remove(Usuario);
                     //Save to database\ 
                     db.SaveChanges();
                 }
@@ -69,13 +69,13 @@ namespace Infra.Repositories
         /// </summary>
         public IEnumerable<IDTO> ListAll()
         {
-            IEnumerable<IDTO> AllObj = new List<ClientDTO>();
+            IEnumerable<IDTO> AllObj = new List<UsuarioDTO>();
                 using (var db = new modelEntities())
                 {
-                    // Display all Clients from the database 
-                    var query = from b in db.Client select b;
-                    List<Client> list = query.ToList();
-                    AllObj = Mapper.Map<List<Client>, List<ClientDTO>>(list);
+                    // Display all Usuarios from the database 
+                    var query = from b in db.Usuarios select b;
+                    List<Usuarios> list = query.ToList();
+                    AllObj = Mapper.Map<List<Usuarios>, List<UsuarioDTO>>(list);
 
                 }
 
@@ -84,9 +84,7 @@ namespace Infra.Repositories
             
         }
 
-
-
-      
+              
 
         /// <summary>
         /// to insert a new object in db
@@ -99,14 +97,14 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Client client = Mapper.Map<Client>(ValidateBusiness(dto));
+                    Usuarios Usuario = Mapper.Map<Usuarios>(ValidateBusiness(dto));
 
                     using (var db = new modelEntities())
                     {
                         using (var transaction = db.Database.BeginTransaction())
                         {
-                            // Display all Clients from the database                        
-                            db.Client.Add(client);
+                            // Display all Usuarios from the database                        
+                            db.Usuarios.Add(Usuario);
                             id = db.SaveChanges();
                             transaction.Commit();
                         }
@@ -132,11 +130,11 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Client client = Mapper.Map<Client>(ValidateBusiness(dto));
+                    Usuarios Usuario = Mapper.Map<Usuarios>(ValidateBusiness(dto));
                     using (var db = new modelEntities())
                     {
-                        // Display all Clients from the database                        
-                        db.Entry(client).State = System.Data.Entity.EntityState.Modified;
+                        // Display all Usuarios from the database                        
+                        db.Entry(Usuario).State = System.Data.Entity.EntityState.Modified;
                         id = db.SaveChanges();
 
                     }
@@ -156,9 +154,9 @@ namespace Infra.Repositories
         /// <param name="dto">a dto which will be validated</param>
         public bool ValidateEntitie(IDTO dto)
         {
-            ClientDTO clientDTO = (ClientDTO)dto;
+            UsuarioDTO UsuarioDTO = (UsuarioDTO)dto;
             bool validated = false;
-            if (string.IsNullOrEmpty(clientDTO.nome) || string.IsNullOrWhiteSpace(clientDTO.nome))
+            if (string.IsNullOrEmpty(UsuarioDTO.Nome) || string.IsNullOrWhiteSpace(UsuarioDTO.Nome))
             {
                 throw new Exception("O campo nome é obrigatório");
             }
@@ -175,22 +173,14 @@ namespace Infra.Repositories
         /// <param name="dto">a dto which will be validated</param>
         public IDTO ValidateBusiness(IDTO dto)
         {
-            ClientDTO clientdto = (ClientDTO)dto;
-            bool validated = false;
-            if (!string.IsNullOrEmpty(clientdto.tipo) &&
-                !string.IsNullOrWhiteSpace(clientdto.tipo))
-            {
-                if (clientdto.tipo == "Física")
-                {
-                    clientdto.CNPJ = "";
-                }
-                else if(clientdto.tipo != "Física")
-                {
-                    clientdto.CPF = "";
-                }
-
-            }
-            return clientdto;
+            UsuarioDTO Usuariodto = (UsuarioDTO)dto;
+            //bool validated = false;
+            //if (!string.IsNullOrEmpty(Usuariodto.Nome) &&
+            //    !string.IsNullOrWhiteSpace(Usuariodto.Nome))
+            //{
+            //    validated = true;
+            //}
+            return Usuariodto;
         }
     }
 }
