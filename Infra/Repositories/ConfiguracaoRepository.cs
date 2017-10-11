@@ -99,11 +99,14 @@ namespace Infra.Repositories
                 if (ValidateEntitie(dto))
                 {
                     Configuracao configuracao = Mapper.Map<Configuracao>(dto);
-
+                    
                     using (var db = new modelEntities())
                     {
                         using (var transaction = db.Database.BeginTransaction())
                         {
+                            var query = from b in db.Perfils where b.codigo == configuracao.perfil_id select b;
+                            Perfil perfil = query.ToList().SingleOrDefault();
+                            configuracao.Perfil = perfil;
                             // Display all Configuracaos from the database                        
                             db.Configuracaos.Add(configuracao);
                             id = db.SaveChanges();

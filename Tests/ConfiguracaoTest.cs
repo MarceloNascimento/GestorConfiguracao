@@ -35,6 +35,18 @@ namespace Tests
         }
 
         [TestMethod]
+        public void SaveAClientTest()
+        {
+            AutoMapperConfig.RegisterMappings();
+            ConfiguracaoDTO dto = new ConfiguracaoDTO();
+            dto.Codigo = 4;
+            dto.Nome = "TESTE 2";
+            dto.Valor = "NOVO 2";
+            dto.PerfilId = 2;
+            rep.Save(dto);
+        }
+
+        [TestMethod]
         public void DeletelientTest()
         {
 
