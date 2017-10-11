@@ -28,9 +28,9 @@ namespace Infra.Repositories
             using (var db = new modelEntities())
             {
                 // Display all Blogs from the database 
-                var query = from b in db.Perfil where b.codigo == codigo select b;
-                Perfil Perfil = query.FirstOrDefault();
-                obj = Mapper.Map<Perfil, PerfilDTO>(Perfil);
+                var query = from b in db.Perfils where b.codigo == codigo select b;
+                Perfil perfil = query.FirstOrDefault();
+                obj = Mapper.Map<Perfil, PerfilDTO>(perfil);
             }
 
 
@@ -49,10 +49,10 @@ namespace Infra.Repositories
                 using (var db = new modelEntities())
                 {
                     // Display all Blogs from the database 
-                    var query = from b in db.Perfil where b.codigo == codigo select b;
-                    Perfil Perfil = query.FirstOrDefault();
+                    var query = from b in db.Perfils where b.codigo == codigo select b;
+                    Perfil perfil = query.FirstOrDefault();
                     //Delete it from memory
-                    db.Perfil.Remove(Perfil);
+                    db.Perfils.Remove(perfil);
                     //Save to database\ 
                     db.SaveChanges();
                 }
@@ -73,7 +73,7 @@ namespace Infra.Repositories
                 using (var db = new modelEntities())
                 {
                     // Display all Perfils from the database 
-                    var query = from b in db.Perfil select b;
+                    var query = from b in db.Perfils select b;
                     List<Perfil> list = query.ToList();
                     AllObj = Mapper.Map<List<Perfil>, List<PerfilDTO>>(list);
 
@@ -99,14 +99,14 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Perfil Perfil = Mapper.Map<Perfil>(ValidateBusiness(dto));
+                    Perfil Perfil = Mapper.Map<Perfil>(dto);
 
                     using (var db = new modelEntities())
                     {
                         using (var transaction = db.Database.BeginTransaction())
                         {
                             // Display all Perfils from the database                        
-                            db.Perfil.Add(Perfil);
+                            db.Perfils.Add(Perfil);
                             id = db.SaveChanges();
                             transaction.Commit();
                         }
@@ -132,11 +132,11 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Perfil Perfil = Mapper.Map<Perfil>(ValidateBusiness(dto));
+                    Perfil perfil = Mapper.Map<Perfil>(dto);
                     using (var db = new modelEntities())
                     {
                         // Display all Perfils from the database                        
-                        db.Entry(Perfil).State = System.Data.Entity.EntityState.Modified;
+                        db.Entry(perfil).State = System.Data.Entity.EntityState.Modified;
                         id = db.SaveChanges();
 
                     }
@@ -156,9 +156,9 @@ namespace Infra.Repositories
         /// <param name="dto">a dto which will be validated</param>
         public bool ValidateEntitie(IDTO dto)
         {
-            PerfilDTO PerfilDTO = (PerfilDTO)dto;
+            PerfilDTO perfilDTO = (PerfilDTO)dto;
             bool validated = false;
-            if (string.IsNullOrEmpty(PerfilDTO.nome) || string.IsNullOrWhiteSpace(PerfilDTO.nome))
+            if (string.IsNullOrEmpty(perfilDTO.Nome) || string.IsNullOrWhiteSpace(perfilDTO.Nome))
             {
                 throw new Exception("O campo nome é obrigatório");
             }
@@ -169,28 +169,6 @@ namespace Infra.Repositories
             return validated;
         }
 
-        /// <summary>
-        /// function to validate business rules
-        /// </summary>
-        /// <param name="dto">a dto which will be validated</param>
-        public IDTO ValidateBusiness(IDTO dto)
-        {
-            PerfilDTO Perfildto = (PerfilDTO)dto;
-            bool validated = false;
-            if (!string.IsNullOrEmpty(Perfildto.tipo) &&
-                !string.IsNullOrWhiteSpace(Perfildto.tipo))
-            {
-                if (Perfildto.tipo == "Física")
-                {
-                    Perfildto.CNPJ = "";
-                }
-                else if(Perfildto.tipo != "Física")
-                {
-                    Perfildto.CPF = "";
-                }
-
-            }
-            return Perfildto;
-        }
+        
     }
 }

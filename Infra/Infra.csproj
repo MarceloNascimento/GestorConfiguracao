@@ -80,7 +80,7 @@
     <Compile Include="Context\Perfil.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Context\Usuarios.cs">
+    <Compile Include="Context\Usuario.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Mappers\AutoMapperConfig.cs" />

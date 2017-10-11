@@ -12,16 +12,13 @@ namespace Infra.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuarios
+    public partial class Usuario
     {
         public int codigo { get; set; }
         public string nome { get; set; }
         public string nickName { get; set; }
-        public Nullable<int> perfil { get; set; }
         public string senha { get; set; }
-        public Nullable<int> perfil_id { get; set; }
     
-        public virtual Perfil Perfil1 { get; set; }
         public virtual Perfil Perfil { get; set; }
     }
 }

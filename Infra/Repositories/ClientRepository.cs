@@ -99,7 +99,7 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Client client = Mapper.Map<Client>(ValidateBusiness(dto));
+                    Client client = Mapper.Map<Client>(dto);
 
                     using (var db = new modelEntities())
                     {
@@ -132,7 +132,7 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Client client = Mapper.Map<Client>(ValidateBusiness(dto));
+                    Client client = Mapper.Map<Client>(dto);
                     using (var db = new modelEntities())
                     {
                         // Display all Clients from the database                        
@@ -158,7 +158,7 @@ namespace Infra.Repositories
         {
             ClientDTO clientDTO = (ClientDTO)dto;
             bool validated = false;
-            if (string.IsNullOrEmpty(clientDTO.nome) || string.IsNullOrWhiteSpace(clientDTO.nome))
+            if (string.IsNullOrEmpty(clientDTO.Nome) || string.IsNullOrWhiteSpace(clientDTO.Nome))
             {
                 throw new Exception("O campo nome é obrigatório");
             }
@@ -169,28 +169,6 @@ namespace Infra.Repositories
             return validated;
         }
 
-        /// <summary>
-        /// function to validate business rules
-        /// </summary>
-        /// <param name="dto">a dto which will be validated</param>
-        public IDTO ValidateBusiness(IDTO dto)
-        {
-            ClientDTO clientdto = (ClientDTO)dto;
-            bool validated = false;
-            if (!string.IsNullOrEmpty(clientdto.tipo) &&
-                !string.IsNullOrWhiteSpace(clientdto.tipo))
-            {
-                if (clientdto.tipo == "Física")
-                {
-                    clientdto.CNPJ = "";
-                }
-                else if(clientdto.tipo != "Física")
-                {
-                    clientdto.CPF = "";
-                }
-
-            }
-            return clientdto;
-        }
+       
     }
 }

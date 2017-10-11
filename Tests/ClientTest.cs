@@ -28,10 +28,10 @@ namespace Tests
         {
             AutoMapperConfig.RegisterMappings();
             ClientDTO dto = new ClientDTO();
-            dto.nome = "Marcelo";
-            dto.telefone = "022998701555";
+            dto.Nome = "Marcelo";
+            dto.Telefone = "022998701555";
             dto.CPF = "01010100101";
-            dto.tipo = "F";
+            dto.Tipo = "F";
             rep.Save(dto);
         }
 
@@ -40,11 +40,11 @@ namespace Tests
         {
             AutoMapperConfig.RegisterMappings();
             ClientDTO dto = new ClientDTO();
-            dto.codigo = 1;
-            dto.nome = "Marcelo ";
-            dto.telefone = "022998701555";
+            dto.Codigo = 1;
+            dto.Nome = "Marcelo ";
+            dto.Telefone = "022998701555";
             dto.CPF = "";
-            dto.tipo = "J";
+            dto.Tipo = "J";
             dto.CNPJ = "01010100101";
             rep.Update(dto);
         }

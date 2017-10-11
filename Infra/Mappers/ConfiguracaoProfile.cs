@@ -16,7 +16,7 @@
               {
                   if (source != null)
                   {
-                      if(dest.perfil_id > 0)
+                      if(dest.Perfil != null)
                       {                         
                           source.PerfilId = dest.Perfil.codigo;
                           source.PerfilNome = dest.Perfil.nome;
@@ -28,11 +28,10 @@
               {
                   if (source != null)
                   {
-                      if (source.PerfilNome != null)
-                      {
-                          dest.Perfil = new Perfil();
+                      if (source.PerfilId > 0 )
+                      {                          
                           dest.Perfil.codigo = source.PerfilId;
-                          dest.Perfil.nome = source.PerfilNome;
+                          dest.perfil_id = source.PerfilId;
                       }
 
                   }

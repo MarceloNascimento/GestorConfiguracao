@@ -8,13 +8,13 @@ namespace Infra.Repositories
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    public class UsuarioRepository : IRepository
+    public class UsuariosRepository : IRepository
     {
 
         /// <summary>
         /// Method constructor in here we mapped dto to entitie and reverse by automapper
         /// </summary>
-        public UsuarioRepository()
+        public UsuariosRepository()
         {
 
         }
@@ -29,8 +29,8 @@ namespace Infra.Repositories
             {
                 // Display all Blogs from the database 
                 var query = from b in db.Usuarios where b.codigo == codigo select b;
-                Usuarios usuario = query.FirstOrDefault();
-                obj = Mapper.Map<Usuarios, UsuarioDTO>(usuario);
+                Usuario usuarios = query.FirstOrDefault();
+                obj = Mapper.Map<Usuario, UsuarioDTO>(usuarios);
             }
 
 
@@ -50,9 +50,9 @@ namespace Infra.Repositories
                 {
                     // Display all Blogs from the database 
                     var query = from b in db.Usuarios where b.codigo == codigo select b;
-                    Usuarios Usuario = query.FirstOrDefault();
+                    Usuario usuarios = query.FirstOrDefault();
                     //Delete it from memory
-                    db.Usuarios.Remove(Usuario);
+                    db.Usuarios.Remove(usuarios);
                     //Save to database\ 
                     db.SaveChanges();
                 }
@@ -72,10 +72,10 @@ namespace Infra.Repositories
             IEnumerable<IDTO> AllObj = new List<UsuarioDTO>();
                 using (var db = new modelEntities())
                 {
-                    // Display all Usuarios from the database 
+                    // Display all usuarios from the database 
                     var query = from b in db.Usuarios select b;
-                    List<Usuarios> list = query.ToList();
-                    AllObj = Mapper.Map<List<Usuarios>, List<UsuarioDTO>>(list);
+                    List<Usuario> list = query.ToList();
+                    AllObj = Mapper.Map<List<Usuario>, List<UsuarioDTO>>(list);
 
                 }
 
@@ -97,14 +97,14 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Usuarios Usuario = Mapper.Map<Usuarios>(ValidateBusiness(dto));
+                    Usuario usuario = Mapper.Map<Usuario>(dto);
 
                     using (var db = new modelEntities())
                     {
                         using (var transaction = db.Database.BeginTransaction())
                         {
-                            // Display all Usuarios from the database                        
-                            db.Usuarios.Add(Usuario);
+                            // Display all usuarios from the database                        
+                            db.Usuarios.Add(usuario);
                             id = db.SaveChanges();
                             transaction.Commit();
                         }
@@ -130,11 +130,11 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Usuarios Usuario = Mapper.Map<Usuarios>(ValidateBusiness(dto));
+                    Usuario usuarios = Mapper.Map<Usuario>(dto);
                     using (var db = new modelEntities())
                     {
-                        // Display all Usuarios from the database                        
-                        db.Entry(Usuario).State = System.Data.Entity.EntityState.Modified;
+                        // Display all usuarios from the database                        
+                        db.Entry(usuarios).State = System.Data.Entity.EntityState.Modified;
                         id = db.SaveChanges();
 
                     }
@@ -154,9 +154,9 @@ namespace Infra.Repositories
         /// <param name="dto">a dto which will be validated</param>
         public bool ValidateEntitie(IDTO dto)
         {
-            UsuarioDTO UsuarioDTO = (UsuarioDTO)dto;
+            UsuarioDTO usuariosDTO = (UsuarioDTO)dto;
             bool validated = false;
-            if (string.IsNullOrEmpty(UsuarioDTO.Nome) || string.IsNullOrWhiteSpace(UsuarioDTO.Nome))
+            if (string.IsNullOrEmpty(usuariosDTO.Nome) || string.IsNullOrWhiteSpace(usuariosDTO.Nome))
             {
                 throw new Exception("O campo nome é obrigatório");
             }
@@ -167,20 +167,5 @@ namespace Infra.Repositories
             return validated;
         }
 
-        /// <summary>
-        /// function to validate business rules
-        /// </summary>
-        /// <param name="dto">a dto which will be validated</param>
-        public IDTO ValidateBusiness(IDTO dto)
-        {
-            UsuarioDTO Usuariodto = (UsuarioDTO)dto;
-            //bool validated = false;
-            //if (!string.IsNullOrEmpty(Usuariodto.Nome) &&
-            //    !string.IsNullOrWhiteSpace(Usuariodto.Nome))
-            //{
-            //    validated = true;
-            //}
-            return Usuariodto;
-        }
     }
 }

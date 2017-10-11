@@ -28,9 +28,9 @@ namespace Infra.Repositories
             using (var db = new modelEntities())
             {
                 // Display all Blogs from the database 
-                var query = from b in db.Configuracao where b.codigo == codigo select b;
-                Configuracao Configuracao = query.FirstOrDefault();
-                obj = Mapper.Map<Configuracao, ConfiguracaoDTO>(Configuracao);
+                var query = from b in db.Configuracaos where b.codigo == codigo select b;
+                Configuracao configuracao = query.FirstOrDefault();
+                obj = Mapper.Map<Configuracao, ConfiguracaoDTO>(configuracao);
             }
 
 
@@ -49,10 +49,10 @@ namespace Infra.Repositories
                 using (var db = new modelEntities())
                 {
                     // Display all Blogs from the database 
-                    var query = from b in db.Configuracao where b.codigo == codigo select b;
-                    Configuracao Configuracao = query.FirstOrDefault();
+                    var query = from b in db.Configuracaos where b.codigo == codigo select b;
+                    Configuracao configuracao = query.FirstOrDefault();
                     //Delete it from memory
-                    db.Configuracao.Remove(Configuracao);
+                    db.Configuracaos.Remove(configuracao);
                     //Save to database\ 
                     db.SaveChanges();
                 }
@@ -72,8 +72,9 @@ namespace Infra.Repositories
             IEnumerable<IDTO> AllObj = new List<ConfiguracaoDTO>();
                 using (var db = new modelEntities())
                 {
+
                     // Display all Configuracaos from the database 
-                    var query = from b in db.Configuracao select b;
+                    var query = from b in db.Configuracaos select b;
                     List<Configuracao> list = query.ToList();
                     AllObj = Mapper.Map<List<Configuracao>, List<ConfiguracaoDTO>>(list);
 
@@ -97,14 +98,14 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Configuracao Configuracao = Mapper.Map<Configuracao>(ValidateBusiness(dto));
+                    Configuracao configuracao = Mapper.Map<Configuracao>(dto);
 
                     using (var db = new modelEntities())
                     {
                         using (var transaction = db.Database.BeginTransaction())
                         {
                             // Display all Configuracaos from the database                        
-                            db.Configuracao.Add(Configuracao);
+                            db.Configuracaos.Add(configuracao);
                             id = db.SaveChanges();
                             transaction.Commit();
                         }
@@ -130,11 +131,19 @@ namespace Infra.Repositories
             {
                 if (ValidateEntitie(dto))
                 {
-                    Configuracao Configuracao = Mapper.Map<Configuracao>(ValidateBusiness(dto));
+                    ConfiguracaoDTO configuracaoDTO = (ConfiguracaoDTO)dto;
+                                      
                     using (var db = new modelEntities())
                     {
+                        //var query = from c in db.Configuracaos where c.codigo == configuracaoDTO.Codigo select c;
+                        //Configuracao configuracao = query.SingleOrDefault();
+                        Configuracao configuracao = Mapper.Map<Configuracao>(configuracaoDTO);
+
+                        //var queryPerfil = from b in db.Perfils where b.codigo == configuracaoDTO.PerfilId select b;
+                        //Perfil perfil = queryPerfil.ToList().FirstOrDefault();
+                        //configuracao.Perfil = perfil;
                         // Display all Configuracaos from the database                        
-                        db.Entry(Configuracao).State = System.Data.Entity.EntityState.Modified;
+                        db.Entry(configuracao).State = System.Data.Entity.EntityState.Modified;
                         id = db.SaveChanges();
 
                     }
@@ -154,9 +163,9 @@ namespace Infra.Repositories
         /// <param name="dto">a dto which will be validated</param>
         public bool ValidateEntitie(IDTO dto)
         {
-            ConfiguracaoDTO ConfiguracaoDTO = (ConfiguracaoDTO)dto;
+            ConfiguracaoDTO configuracaoDTO = (ConfiguracaoDTO)dto;
             bool validated = false;
-            if (string.IsNullOrEmpty(ConfiguracaoDTO.Nome) || string.IsNullOrWhiteSpace(ConfiguracaoDTO.Nome))
+            if (string.IsNullOrEmpty(configuracaoDTO.Nome) || string.IsNullOrWhiteSpace(configuracaoDTO.Nome))
             {
                 throw new Exception("O campo nome é obrigatório");
             }
@@ -167,20 +176,6 @@ namespace Infra.Repositories
             return validated;
         }
 
-        /// <summary>
-        /// function to validate business rules
-        /// </summary>
-        /// <param name="dto">a dto which will be validated</param>
-        public IDTO ValidateBusiness(IDTO dto)
-        {
-            ConfiguracaoDTO Configuracaodto = (ConfiguracaoDTO)dto;
-            //bool validated = false;
-            //if (!string.IsNullOrEmpty(Configuracaodto.Nome) &&
-            //    !string.IsNullOrWhiteSpace(Configuracaodto.Nome))
-            //{
-            //    validated = true;
-            //}
-            return Configuracaodto;
-        }
+       
     }
 }

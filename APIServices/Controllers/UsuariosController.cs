@@ -19,25 +19,25 @@ namespace APIServices.Controllers
         // GET: api/Usuarios
 
         [HttpGet]
-        public IList<UsuariosDTO> Get()
+        public IList<UsuarioDTO> Get()
         {
             _rep = new UsuariosRepository();
-            IList<UsuariosDTO> Usuarioss = (List<UsuariosDTO>)_rep.ListAll();
+            IList<UsuarioDTO> Usuarioss = (List<UsuarioDTO>)_rep.ListAll();
             return Usuarioss;
         }
 
         // GET: api/Usuarios/5    
         [HttpGet]
-        public UsuariosDTO Get(int id)
+        public UsuarioDTO Get(int id)
         {
             _rep = new UsuariosRepository();
-            UsuariosDTO Usuarios = (UsuariosDTO)_rep.GetById(id);
+            UsuarioDTO Usuarios = (UsuarioDTO)_rep.GetById(id);
             return Usuarios;
         }
 
         [HttpPost]
         // POST: api/Usuarios
-        public HttpResponseMessage Post([FromBody]UsuariosDTO dto)
+        public HttpResponseMessage Post([FromBody]UsuarioDTO dto)
         {
             _rep = new UsuariosRepository();
             try
@@ -62,13 +62,13 @@ namespace APIServices.Controllers
 
         [HttpPut]
         // PUT: api/Usuarios/5
-        public HttpResponseMessage Put([FromBody]UsuariosDTO dto)
+        public HttpResponseMessage Put([FromBody]UsuarioDTO dto)
         {
             _rep = new UsuariosRepository();
             try
             {
                 int saved = _rep.Update(dto);
-                if (saved > 0 && dto.codigo > 0)
+                if (saved > 0 && dto.Codigo > 0)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }

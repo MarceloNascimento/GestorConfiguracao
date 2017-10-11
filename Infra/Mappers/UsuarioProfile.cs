@@ -8,7 +8,7 @@
 
         public UsuarioProfile()
         {
-            CreateMap<Usuarios, UsuarioDTO>()
+            CreateMap<Usuario, UsuarioDTO>()
             .ForMember(dest => dest.Codigo, map => map.MapFrom(source => source.codigo))
              .ForMember(dest => dest.Nome, map => map.MapFrom(source => source.nome))
              .ForMember(dest => dest.Login, map => map.MapFrom(source => source.nickName))
@@ -17,7 +17,7 @@
              {
                  if (source != null)
                  {
-                     if (dest.perfil_id > 0)
+                     if (dest.Perfil != null)
                      {
                          source.PerfilId = dest.Perfil.codigo;
                          source.PerfilNome = dest.Perfil.nome;

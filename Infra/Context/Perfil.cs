@@ -17,22 +17,16 @@ namespace Infra.Context
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Perfil()
         {
-            this.Configuracao = new HashSet<Configuracao>();
-            this.Usuarios = new HashSet<Usuarios>();
-            this.Configuracao1 = new HashSet<Configuracao>();
-            this.Usuarios1 = new HashSet<Usuarios>();
+            this.Usuarios = new HashSet<Usuario>();
+            this.Configuracaos = new HashSet<Configuracao>();
         }
     
         public int codigo { get; set; }
         public string nome { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Configuracao> Configuracao { get; set; }
+        public virtual ICollection<Usuario> Usuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuarios> Usuarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Configuracao> Configuracao1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuarios> Usuarios1 { get; set; }
+        public virtual ICollection<Configuracao> Configuracaos { get; set; }
     }
 }

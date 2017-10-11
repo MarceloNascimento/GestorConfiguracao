@@ -68,7 +68,7 @@ namespace APIServices.Controllers
             try
             {
                 int saved = _rep.Update(dto);
-                if (saved > 0 && dto.codigo > 0)
+                if (saved > 0 && dto.Codigo > 0)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
