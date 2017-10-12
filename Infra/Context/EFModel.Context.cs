@@ -25,9 +25,8 @@ namespace Infra.Context
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Perfil> Perfils { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Configuracao> Configuracaos { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
     }
 }

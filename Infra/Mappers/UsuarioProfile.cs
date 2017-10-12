@@ -22,18 +22,15 @@
                          source.PerfilId = dest.Perfil.codigo;
                          source.PerfilNome = dest.Perfil.nome;
                      }
-
-
                  }
              }).ReverseMap().AfterMap((source,dest) =>
              {
                  if (source != null)
                  {
-                     if (source.PerfilNome != null)
+                     if (source.PerfilId > 0)
                      {
-                         dest.Perfil = new Perfil();
                          dest.Perfil.codigo = source.PerfilId;
-                         dest.Perfil.nome = source.PerfilNome;
+                         dest.perfil_id = source.PerfilId;
                      }
 
                  }

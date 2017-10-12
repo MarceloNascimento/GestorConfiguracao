@@ -5,17 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="modelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Client">
-          <Key>
-            <PropertyRef Name="codigo" />
-          </Key>
-          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nome" Type="nvarchar" MaxLength="200" />
-          <Property Name="tipo" Type="nvarchar" MaxLength="50" />
-          <Property Name="CPF" Type="nvarchar" MaxLength="11" />
-          <Property Name="CNPJ" Type="nvarchar" MaxLength="14" />
-          <Property Name="telefone" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="Configuracao">
           <Key>
             <PropertyRef Name="codigo" />
@@ -67,7 +56,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="modelModelStoreContainer">
-          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Configuracao" EntityType="Self.Configuracao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
@@ -84,29 +72,17 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="modelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Client">
-          <Key>
-            <PropertyRef Name="codigo" />
-          </Key>
-          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CPF" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="CNPJ" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
-          <Property Name="telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityContainer Name="modelEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Perfils" EntityType="modelModel.Perfil" />
-          <EntitySet Name="Usuarios" EntityType="modelModel.Usuario" />
-          <AssociationSet Name="FK_perfil_users" Association="modelModel.FK_perfil_users">
-            <End Role="Perfil" EntitySet="Perfils" />
-            <End Role="Usuario" EntitySet="Usuarios" />
-          </AssociationSet>
           <EntitySet Name="Configuracaos" EntityType="modelModel.Configuracao" />
           <AssociationSet Name="FK_Perfil_Conf" Association="modelModel.FK_Perfil_Conf">
             <End Role="Perfil" EntitySet="Perfils" />
             <End Role="Configuracao" EntitySet="Configuracaos" />
+          </AssociationSet>
+          <EntitySet Name="Usuarios" EntityType="modelModel.Usuario" />
+          <AssociationSet Name="FK_perfil_users" Association="modelModel.FK_perfil_users">
+            <End Role="Perfil" EntitySet="Perfils" />
+            <End Role="Usuario" EntitySet="Usuarios" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Perfil">
@@ -115,23 +91,9 @@
           </Key>
           <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Usuarios" Relationship="modelModel.FK_perfil_users" FromRole="Perfil" ToRole="Usuario" />
           <NavigationProperty Name="Configuracaos" Relationship="modelModel.FK_Perfil_Conf" FromRole="Perfil" ToRole="Configuracao" />
+          <NavigationProperty Name="Usuarios" Relationship="modelModel.FK_perfil_users" FromRole="Perfil" ToRole="Usuario" />
         </EntityType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="codigo" />
-          </Key>
-          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="nickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="senha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Perfil" Relationship="modelModel.FK_perfil_users" FromRole="Usuario" ToRole="Perfil" />
-        </EntityType>
-        <Association Name="FK_perfil_users">
-          <End Type="modelModel.Perfil" Role="Perfil" Multiplicity="0..1" />
-          <End Type="modelModel.Usuario" Role="Usuario" Multiplicity="*" />
-        </Association>
         <EntityType Name="Configuracao">
           <Key>
             <PropertyRef Name="codigo" />
@@ -154,27 +116,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="nickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="perfil_id" Type="Int32" />
+          <Property Name="senha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Perfil" Relationship="modelModel.FK_perfil_users" FromRole="Usuario" ToRole="Perfil" />
+        </EntityType>
+        <Association Name="FK_perfil_users">
+          <End Type="modelModel.Perfil" Role="Perfil" Multiplicity="0..1" />
+          <End Type="modelModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="modelModelStoreContainer" CdmEntityContainer="modelEntities">
-          <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="modelModel.Client">
-              <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="nome" ColumnName="nome" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="CPF" ColumnName="CPF" />
-                <ScalarProperty Name="CNPJ" ColumnName="CNPJ" />
-                <ScalarProperty Name="telefone" ColumnName="telefone" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Perfils">
             <EntityTypeMapping TypeName="modelModel.Perfil">
               <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configuracaos">
+            <EntityTypeMapping TypeName="modelModel.Configuracao">
+              <MappingFragment StoreEntitySet="Configuracao">
+                <ScalarProperty Name="perfil_id" ColumnName="perfil_id" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
               </MappingFragment>
@@ -184,26 +167,8 @@
             <EntityTypeMapping TypeName="modelModel.Usuario">
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="senha" ColumnName="senha" />
-                <ScalarProperty Name="nickName" ColumnName="nickName" />
-                <ScalarProperty Name="nome" ColumnName="nome" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="FK_perfil_users" TypeName="modelModel.FK_perfil_users" StoreEntitySet="Usuarios">
-            <EndProperty Name="Usuario">
-              <ScalarProperty Name="codigo" ColumnName="codigo" />
-            </EndProperty>
-            <EndProperty Name="Perfil">
-              <ScalarProperty Name="codigo" ColumnName="perfil_id" />
-            </EndProperty>
-            <Condition ColumnName="perfil_id" IsNull="false" />
-          </AssociationSetMapping>
-          <EntitySetMapping Name="Configuracaos">
-            <EntityTypeMapping TypeName="modelModel.Configuracao">
-              <MappingFragment StoreEntitySet="Configuracao">
                 <ScalarProperty Name="perfil_id" ColumnName="perfil_id" />
-                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="nickName" ColumnName="nickName" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
               </MappingFragment>

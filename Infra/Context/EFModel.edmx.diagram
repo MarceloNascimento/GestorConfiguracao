@@ -5,12 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0c870c6e62b545fd98fd33421a4c4c5a" Name="Diagram1">
-        <EntityTypeShape EntityType="modelModel.Client" Width="1.5" PointX="0.5" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="modelModel.Perfil" Width="1.5" PointX="2.75" PointY="1.75" />
-        <EntityTypeShape EntityType="modelModel.Usuario" Width="1.5" PointX="5.625" PointY="3.625" />
-        <AssociationConnector Association="modelModel.FK_perfil_users" />
-        <EntityTypeShape EntityType="modelModel.Configuracao" Width="1.5" PointX="6" PointY="0.5" />
+        <EntityTypeShape EntityType="modelModel.Perfil" Width="1.5" PointX="0.5" PointY="1.375" />
+        <EntityTypeShape EntityType="modelModel.Configuracao" Width="1.5" PointX="6" PointY="1" />
         <AssociationConnector Association="modelModel.FK_Perfil_Conf" />
+        <EntityTypeShape EntityType="modelModel.Usuario" Width="1.5" PointX="4.375" PointY="3.75" />
+        <AssociationConnector Association="modelModel.FK_perfil_users" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

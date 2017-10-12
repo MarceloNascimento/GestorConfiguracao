@@ -7,7 +7,7 @@
         'locationhostService',
         function ($http, messageService, locationhostService) {
         
-            this.apiBase = locationhostService.apiBase + 'api/usuario';;
+            this.apiBase = locationhostService.apiBase + 'api/Usuarios';;
                         
             //To save or update some dto passede by front-end
             this.goSaveOrUpdate = function (dto, fn) {

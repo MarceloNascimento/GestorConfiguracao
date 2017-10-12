@@ -156,12 +156,10 @@
     <Content Include="app\common\globals\loadAnimeService.js" />
     <Content Include="app\common\globals\locationhostService.js" />
     <Content Include="app\common\globals\messageService.js" />
-    <Content Include="app\controller\ClientCtrl.js" />
     <Content Include="app\controller\ConfiguracaoCtrl.js" />
     <Content Include="app\controller\PerfilCtrl.js" />
     <Content Include="app\controller\UsuarioCtrl.js" />
     <Content Include="app\Readme.txt" />
-    <Content Include="app\services\clientService.js" />
     <Content Include="app\services\configuracaoService.js" />
     <Content Include="app\services\perfilService.js" />
     <Content Include="app\services\usuarioService.js" />

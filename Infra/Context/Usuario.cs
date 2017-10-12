@@ -17,6 +17,7 @@ namespace Infra.Context
         public int codigo { get; set; }
         public string nome { get; set; }
         public string nickName { get; set; }
+        public Nullable<int> perfil_id { get; set; }
         public string senha { get; set; }
     
         public virtual Perfil Perfil { get; set; }

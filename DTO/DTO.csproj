@@ -48,7 +48,6 @@
     <Compile Include="ConfiguracaoDTO.cs" />
     <Compile Include="PerfilDTO.cs" />
     <Compile Include="UsuarioDTO.cs" />
-    <Compile Include="ClientDTO.cs" />
     <Compile Include="IDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
