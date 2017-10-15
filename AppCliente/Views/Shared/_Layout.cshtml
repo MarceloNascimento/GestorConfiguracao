@@ -18,11 +18,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>Configuracao
-                @Html.ActionLink("Gestor de Configuração", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Gestor de Configurações", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li ><a ng-href="/">Início</a></li>
+                    <li ><a ng-href="/">Visualizar</a></li>
                     <li ><a ng-href="/Configuracoes">Configuração</a></li>
                     <li ><a ng-href="/Usuarios">Usuários</a></li>
                 </ul>
@@ -33,7 +33,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Hello Sapiensia Desenvolvido por Marcelo Rocha ®</p>
         </footer>
     </div>
 
@@ -48,6 +48,7 @@
 </html>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
 
 <!--Application Js configs files-->
 <script src="~/Scripts/angular.min.js"></script>
@@ -56,12 +57,15 @@
 <script src="~/Scripts/angular-sanitize.min.js"></script>
 <script src="~/Scripts//angular-animate.min.js"></script>
 <script src="~/Scripts/angular-route.min.js"></script>
+<script src="~/Scripts/angular-ngStorage.js"></script>
+<script src="~/Scripts/angular-md5.js"></script>
 
-
-<script src="~/Scripts/bootstrap.min.js"></script>
 
 <script src="~/app/common/config/app.js"></script>
 <script src="~/app/common/config/config.route.js"></script>
+<script src="~/app/common/globals/storageService.js"></script>
+<script src="~/app/common/globals/authService.js"></script>
+<script src="~/app/common/globals/authInterceptorService.js"></script>
 
 <!-- Globals components -->
 <script src="~/app/common/globals/loadAnimeService.js"></script>
@@ -87,3 +91,6 @@
 <script src="~/app/controller/ConfiguracaoCtrl.js"></script>
 <script src="~/app/controller/PerfilCtrl.js"></script>
 <script src="~/app/controller/UsuarioCtrl.js"></script>
+<script src="~/app/controller/LoginCtrl.js"></script>
+
+

@@ -1,5 +1,5 @@
 ﻿
-var app = angular.module('app');
+//var app = angular.module('app');
 var baseUrl = 'app/views';
 app.config(function ($routeProvider, $locationProvider) {
     // remove o # da url

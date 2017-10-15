@@ -103,6 +103,10 @@ namespace Infra.Repositories
                     {
                         using (var transaction = db.Database.BeginTransaction())
                         {
+
+                            var query = from b in db.Perfils where b.codigo == usuario.perfil_id select b;
+                            Perfil perfil = query.ToList().SingleOrDefault();
+                            usuario.Perfil = perfil;
                             // Display all usuarios from the database                        
                             db.Usuarios.Add(usuario);
                             id = db.SaveChanges();
@@ -133,6 +137,8 @@ namespace Infra.Repositories
                     Usuario usuarios = Mapper.Map<Usuario>(dto);
                     using (var db = new modelEntities())
                     {
+                        //var query = from b in db.Perfils where b.codigo == usuarios.perfil_id select b;
+                        //Perfil perfil = query.ToList().SingleOrDefault();
                         // Display all usuarios from the database                        
                         db.Entry(usuarios).State = System.Data.Entity.EntityState.Modified;
                         id = db.SaveChanges();

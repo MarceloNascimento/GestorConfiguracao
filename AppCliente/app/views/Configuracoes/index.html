@@ -66,8 +66,8 @@
 
                         <label class="control-label">Perfil <i class="required">*</i></label>
                         <select class="form-control" name="Perfil" ng-model="vmConfiguracao.user.perfil" 
-                             ng-options="p.nome for p in vmConfiguracao.bagPerfils | orderBy: 'nome'" required>
-                            <option value="?" selected="selected"> Selecione</option>
+                             ng-options="p.nome for p in vmConfiguracao.bagPerfils | orderBy: 'nome'  track by p.codigo" required>
+                            <option value="">--- Selecione ---</option> <!-- not selected / blank option -->
                         </select>                       
                     </div>
                    

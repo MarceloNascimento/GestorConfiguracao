@@ -138,14 +138,8 @@ namespace Infra.Repositories
                                       
                     using (var db = new modelEntities())
                     {
-                        //var query = from c in db.Configuracaos where c.codigo == configuracaoDTO.Codigo select c;
-                        //Configuracao configuracao = query.SingleOrDefault();
+                        
                         Configuracao configuracao = Mapper.Map<Configuracao>(configuracaoDTO);
-
-                        //var queryPerfil = from b in db.Perfils where b.codigo == configuracaoDTO.PerfilId select b;
-                        //Perfil perfil = queryPerfil.ToList().FirstOrDefault();
-                        //configuracao.Perfil = perfil;
-                        // Display all Configuracaos from the database                        
                         db.Entry(configuracao).State = System.Data.Entity.EntityState.Modified;
                         id = db.SaveChanges();
 

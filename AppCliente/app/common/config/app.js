@@ -4,8 +4,19 @@ var app = angular.module('app', [
     'ngAnimate',
     'ngRoute',
     'ngResource', 
-    'ui.mask',
-    'validate-cnpj',
-    'validate-cpf',
+    'ngStorage',
+    'angular-md5'  
     
 ]);
+
+app.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);
+
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService');
+});
+
+app.run(['authService', function (authService) {
+    authService.fillAuthData();
+}]);

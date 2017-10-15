@@ -7,7 +7,7 @@
         function ($http) {
 
             //Local Application
-            this.apiBase = 'http://localhost:55958/';
+            this.apiBase = 'http://localhost:59806/';
     
         }])
 

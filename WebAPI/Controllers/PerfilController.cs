@@ -10,36 +10,36 @@ namespace APIServices.Controllers
     using System.Net.Http;
     using System.Web.Http;
 
-    [RoutePrefix("api/Usuarios")]
+    [RoutePrefix("api/Perfil")]
 
-    public class UsuariosController : ApiController
+    public class PerfilController : ApiController
     {
 
-        private static UsuariosRepository _rep;
-        // GET: api/Usuarios
+        private static PerfilRepository _rep;
+        // GET: api/Perfil
 
         [HttpGet]
-        public IList<UsuarioDTO> Get()
+        public IList<PerfilDTO> Get()
         {
-            _rep = new UsuariosRepository();
-            IList<UsuarioDTO> usuarios = (List<UsuarioDTO>)_rep.ListAll();
-            return usuarios;
+            _rep = new PerfilRepository();
+            IList<PerfilDTO> Perfils = (List<PerfilDTO>)_rep.ListAll();
+            return Perfils;
         }
 
-        // GET: api/Usuarios/5    
+        // GET: api/Perfil/5    
         [HttpGet]
-        public UsuarioDTO Get(int id)
+        public PerfilDTO Get(int id)
         {
-            _rep = new UsuariosRepository();
-            UsuarioDTO usuarios = (UsuarioDTO)_rep.GetById(id);
-            return usuarios;
+            _rep = new PerfilRepository();
+            PerfilDTO Perfil = (PerfilDTO)_rep.GetById(id);
+            return Perfil;
         }
 
         [HttpPost]
-        // POST: api/Usuarios
-        public HttpResponseMessage Post([FromBody]UsuarioDTO dto)
+        // POST: api/Perfil
+        public HttpResponseMessage Post([FromBody]PerfilDTO dto)
         {
-            _rep = new UsuariosRepository();
+            _rep = new PerfilRepository();
             try
             {
                 int saved = _rep.Save(dto);
@@ -49,7 +49,7 @@ namespace APIServices.Controllers
                 }
                 else
                 {
-                    throw new Exception("Não foi possível salvar os dados do Usuariose, contacte o administrador !");
+                    throw new Exception("Não foi possível salvar os dados do Perfile, contacte o administrador !");
                 }
 
             }
@@ -61,10 +61,10 @@ namespace APIServices.Controllers
         }
 
         [HttpPut]
-        // PUT: api/Usuarios/5
-        public HttpResponseMessage Put([FromBody]UsuarioDTO dto)
+        // PUT: api/Perfil/5
+        public HttpResponseMessage Put([FromBody]PerfilDTO dto)
         {
-            _rep = new UsuariosRepository();
+            _rep = new PerfilRepository();
             try
             {
                 int saved = _rep.Update(dto);
@@ -74,7 +74,7 @@ namespace APIServices.Controllers
                 }
                 else
                 {
-                    throw new Exception("Não foi possível atualizar os dados do Usuariose, contacte o administrador!");
+                    throw new Exception("Não foi possível atualizar os dados do Perfile, contacte o administrador!");
                 }
             }
             catch (Exception ex)
@@ -84,10 +84,10 @@ namespace APIServices.Controllers
         }
 
         [HttpDelete]
-        // DELETE: api/Usuarios/5
+        // DELETE: api/Perfil/5
         public HttpResponseMessage Delete(int id)
         {
-            _rep = new UsuariosRepository();
+            _rep = new PerfilRepository();
             try
             {
                 _rep.Delete(id);

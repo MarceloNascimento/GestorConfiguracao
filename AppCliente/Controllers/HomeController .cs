@@ -10,21 +10,10 @@ namespace AppCliente.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.UserWebAPI = System.Configuration.ConfigurationManager.AppSettings["UserWebAPI"];
+            ViewBag.PwdWebAPI = System.Configuration.ConfigurationManager.AppSettings["PwdWebAPI"];
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

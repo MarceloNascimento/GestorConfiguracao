@@ -23,9 +23,8 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>CPF / CNPJ</th>
-                    <th>Telefone</th>
-                    <th>Tipo</th>
+                    <th>Login</th>
+                    <th>Perfil</th>                  
                     <th colspan="2">Ação</th>
                 </tr>
             </thead>
@@ -34,7 +33,7 @@
                 <tr ng-repeat="usuario in vmUsuario.bagusuarios | orderBy:'nome' ">
                     <td>{{usuario.nome}}</td>
                     <td>{{usuario.login}}</td>
-                    <td>{{usuario.perfilNome  }}</td>
+                    <td>{{usuario.perfilNome}}</td>
                     <td style="cursor:pointer"><i class="glyphicon glyphicon-edit" ng-click="vmUsuario.goEditar(usuario);" title="Editar"></i></td>
                     <td style="cursor:pointer"><i class="glyphicon glyphicon-remove" ng-click="vmUsuario.goDeletar(usuario.codigo);" title="Deletar"></i></td>
                 </tr>
@@ -66,8 +65,10 @@
 
                         <label class="control-label">Perfil <i class="required">*</i></label>
                         <select class="form-control" name="Perfil" ng-model="vmUsuario.user.perfil"
-                                ng-options="p.nome for p in vmUsuario.bagPerfils | orderBy: 'nome'" required>
-                            <option value="?" selected="selected"> Selecione</option>
+                                 ng-options="p.nome for p in vmUsuario.bagPerfils | orderBy: 'nome' track by p.codigo  "                                 
+                              required>
+                            <option value="">--- Selecione ---</option> <!-- not selected / blank option -->
+                           
                         </select>
                     </div>
                 </div>

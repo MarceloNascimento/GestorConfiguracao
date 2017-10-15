@@ -10,36 +10,36 @@ namespace APIServices.Controllers
     using System.Net.Http;
     using System.Web.Http;
 
-    [RoutePrefix("api/Usuarios")]
+    [RoutePrefix("api/Configuracao")]
 
-    public class UsuariosController : ApiController
+    public class ConfiguracaoController : ApiController
     {
 
-        private static UsuariosRepository _rep;
-        // GET: api/Usuarios
+        private static ConfiguracaoRepository _rep;
+        // GET: api/Configuracao
 
         [HttpGet]
-        public IList<UsuarioDTO> Get()
+        public IList<ConfiguracaoDTO> Get()
         {
-            _rep = new UsuariosRepository();
-            IList<UsuarioDTO> usuarios = (List<UsuarioDTO>)_rep.ListAll();
-            return usuarios;
+            _rep = new ConfiguracaoRepository();
+            IList<ConfiguracaoDTO> Configuracaos = (List<ConfiguracaoDTO>)_rep.ListAll();
+            return Configuracaos;
         }
 
-        // GET: api/Usuarios/5    
+        // GET: api/Configuracao/5    
         [HttpGet]
-        public UsuarioDTO Get(int id)
+        public ConfiguracaoDTO Get(int id)
         {
-            _rep = new UsuariosRepository();
-            UsuarioDTO usuarios = (UsuarioDTO)_rep.GetById(id);
-            return usuarios;
+            _rep = new ConfiguracaoRepository();
+            ConfiguracaoDTO Configuracao = (ConfiguracaoDTO)_rep.GetById(id);
+            return Configuracao;
         }
 
         [HttpPost]
-        // POST: api/Usuarios
-        public HttpResponseMessage Post([FromBody]UsuarioDTO dto)
+        // POST: api/Configuracao
+        public HttpResponseMessage Post([FromBody]ConfiguracaoDTO dto)
         {
-            _rep = new UsuariosRepository();
+            _rep = new ConfiguracaoRepository();
             try
             {
                 int saved = _rep.Save(dto);
@@ -49,7 +49,7 @@ namespace APIServices.Controllers
                 }
                 else
                 {
-                    throw new Exception("Não foi possível salvar os dados do Usuariose, contacte o administrador !");
+                    throw new Exception("Não foi possível salvar os dados do Configuracaoe, contacte o administrador !");
                 }
 
             }
@@ -61,10 +61,10 @@ namespace APIServices.Controllers
         }
 
         [HttpPut]
-        // PUT: api/Usuarios/5
-        public HttpResponseMessage Put([FromBody]UsuarioDTO dto)
+        // PUT: api/Configuracao/5
+        public HttpResponseMessage Put([FromBody]ConfiguracaoDTO dto)
         {
-            _rep = new UsuariosRepository();
+            _rep = new ConfiguracaoRepository();
             try
             {
                 int saved = _rep.Update(dto);
@@ -74,7 +74,7 @@ namespace APIServices.Controllers
                 }
                 else
                 {
-                    throw new Exception("Não foi possível atualizar os dados do Usuariose, contacte o administrador!");
+                    throw new Exception("Não foi possível atualizar os dados do Configuracaoe, contacte o administrador!");
                 }
             }
             catch (Exception ex)
@@ -84,10 +84,10 @@ namespace APIServices.Controllers
         }
 
         [HttpDelete]
-        // DELETE: api/Usuarios/5
+        // DELETE: api/Configuracao/5
         public HttpResponseMessage Delete(int id)
         {
-            _rep = new UsuariosRepository();
+            _rep = new ConfiguracaoRepository();
             try
             {
                 _rep.Delete(id);

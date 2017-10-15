@@ -1,15 +1,15 @@
 ﻿(function () {
     'use strict';
 
-    app.controller('UsuarioCtrl', ['$scope', '$injector', '$timeout', 'loadAnimeService', 'messageService', '$location', 'usuarioService',
-        function ($scope, $injector, $timeout, loadAnimeService, messageService, $location, usuarioService) {
+    app.controller('UsuarioCtrl', ['$scope', '$injector', '$timeout', 'loadAnimeService', 'messageService', '$location', 'usuarioService','perfilService',
+        function ($scope, $injector, $timeout, loadAnimeService, messageService, $location, usuarioService, perfilService) {
 
             var vm = this;
 
             function startVm() {
 
                 //bag from Services which wil be bringing a list of objects from db
-                vm.bagUsuario = [];
+                vm.bagusuarios = [];
                 vm.user = {};
                 //vm.loadGrid = loadGrid;
                 vm.goCadastro = goCadastro;
@@ -28,15 +28,21 @@
                 loadAnimeService.show();
                 usuarioService.listAll(function (resp) {
                     if (resp !== null) {
-                        console.info(resp);
+                       
                         vm.tela = 'Consulta';
-                        vm.bagUsuario = resp.data;
+                        vm.bagusuarios = resp.data;
+                        loadAnimeService.close();
+                    }
+
+                });        
+
+                perfilService.listAll(function (resp) {
+                    if (resp.data !== null) {
+                        vm.bagPerfils = resp.data;
                         loadAnimeService.close();
                     }
 
                 });
-
-                vm.bagTipos = ['Física', 'Jurídica'];
             }
 
             function goCadastro() {
@@ -47,8 +53,8 @@
             }
 
             function goConsulta() {
-                vm.bagUsuario = null;
-                vm.bagUsuario = [];
+                vm.bagusuarios = null;
+                vm.bagusuarios = [];
                 loadAnimeService.show();
                 vm.tela = 'Consulta';
                 vm.loadGrid();

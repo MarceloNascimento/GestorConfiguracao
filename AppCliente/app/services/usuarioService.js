@@ -14,9 +14,8 @@
                 var data = {
                     Codigo: dto.codigo,
                     Nome: dto.nome,
-                    CPF: dto.CPF, CNPJ: dto.CNPJ,
-                    telefone: dto.telefone,
-                    Tipo: dto.tipo
+                    Login: dto.login, Senha: dto.senha,
+                    PerfilId: dto.perfil.codigo                    
                 };
                 if (dto !== null && angular.isNumber(dto.codigo) && dto.codigo > 0) {
                     return this.update(data, fn);
