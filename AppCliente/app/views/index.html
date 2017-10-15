@@ -17,12 +17,12 @@
     <div class="panel-body col-xs-4 col-sm-4 col-md-4">
         <form name="formLogin" novalidate>
             <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" class="form-control" ng-model="vmLogin.usuario.userName" >
+                <label for="text">Email address:</label>
+                <input type="text" name="userName" class="form-control" ng-model="vmLogin.usuario.userName" >
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label>
-                <input type="password" class="form-control" ng-model="vmLogin.usuario.password">
+                <input type="password" name="password" class="form-control" ng-model="vmLogin.usuario.password">
             </div>
            <span class="text-warning" ng-show="vmLogin.LoginError.length > 0">{{vmLogin.LoginError}}</span>
             <button class="btn btn-primary" ng-click="vmLogin.realizaLogin()">

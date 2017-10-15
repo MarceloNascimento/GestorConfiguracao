@@ -19,6 +19,7 @@ namespace APIServices.Controllers
         // GET: api/Configuracao
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IList<ConfiguracaoDTO> Get()
         {
             _rep = new ConfiguracaoRepository();
@@ -28,6 +29,7 @@ namespace APIServices.Controllers
 
         // GET: api/Configuracao/5    
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ConfiguracaoDTO Get(int id)
         {
             _rep = new ConfiguracaoRepository();
@@ -36,6 +38,7 @@ namespace APIServices.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         // POST: api/Configuracao
         public HttpResponseMessage Post([FromBody]ConfiguracaoDTO dto)
         {
@@ -61,6 +64,7 @@ namespace APIServices.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         // PUT: api/Configuracao/5
         public HttpResponseMessage Put([FromBody]ConfiguracaoDTO dto)
         {
@@ -84,6 +88,7 @@ namespace APIServices.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         // DELETE: api/Configuracao/5
         public HttpResponseMessage Delete(int id)
         {

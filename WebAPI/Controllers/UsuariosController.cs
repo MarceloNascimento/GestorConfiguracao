@@ -19,6 +19,7 @@ namespace APIServices.Controllers
         // GET: api/Usuarios
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Consultor")]
         public IList<UsuarioDTO> Get()
         {
             _rep = new UsuariosRepository();
@@ -27,7 +28,8 @@ namespace APIServices.Controllers
         }
 
         // GET: api/Usuarios/5    
-        [HttpGet]
+        [HttpGet]     
+        [Authorize(Roles = "Admin,Consultor")]
         public UsuarioDTO Get(int id)
         {
             _rep = new UsuariosRepository();
@@ -37,6 +39,7 @@ namespace APIServices.Controllers
 
         [HttpPost]
         // POST: api/Usuarios
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Post([FromBody]UsuarioDTO dto)
         {
             _rep = new UsuariosRepository();
@@ -62,6 +65,7 @@ namespace APIServices.Controllers
 
         [HttpPut]
         // PUT: api/Usuarios/5
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Put([FromBody]UsuarioDTO dto)
         {
             _rep = new UsuariosRepository();
@@ -85,6 +89,7 @@ namespace APIServices.Controllers
 
         [HttpDelete]
         // DELETE: api/Usuarios/5
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Delete(int id)
         {
             _rep = new UsuariosRepository();

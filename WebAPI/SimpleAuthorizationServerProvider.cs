@@ -2,6 +2,7 @@
 
 namespace APIServices
 {
+    using DTO;
     using Infra.Repositories;
     using Microsoft.Owin.Security.OAuth;
     using System;
@@ -29,7 +30,7 @@ namespace APIServices
                 context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
                 LoginRepository _rep = new LoginRepository();
-
+                UsuarioDTO usuarioDTO = new UsuarioDTO();
                 string user = context.UserName;
                 string pwd = context.Password;
 
@@ -38,15 +39,18 @@ namespace APIServices
                     context.SetError("invalid_grant", "Access denied!");
                     return;
                 }
+                else
+                {
+                    usuarioDTO = (UsuarioDTO)_rep.GetUsuario(user, pwd);
+                }
 
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
                 identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
 
                 var roles = new List<string>();
-                roles.Add("Master");
-                roles.Add("Administrador");
-                roles.Add("Cliente");
+                roles.Add(usuarioDTO.PerfilNome);
+               
                 
                 foreach (var item in roles)
                     identity.AddClaim(new Claim(ClaimTypes.Role, item));

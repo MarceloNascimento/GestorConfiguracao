@@ -19,6 +19,7 @@ namespace APIServices.Controllers
         // GET: api/Perfil
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Consultor")]
         public IList<PerfilDTO> Get()
         {
             _rep = new PerfilRepository();
@@ -28,6 +29,7 @@ namespace APIServices.Controllers
 
         // GET: api/Perfil/5    
         [HttpGet]
+        [Authorize(Roles = "Admin,Consultor")]
         public PerfilDTO Get(int id)
         {
             _rep = new PerfilRepository();
@@ -37,6 +39,7 @@ namespace APIServices.Controllers
 
         [HttpPost]
         // POST: api/Perfil
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Post([FromBody]PerfilDTO dto)
         {
             _rep = new PerfilRepository();
@@ -62,6 +65,7 @@ namespace APIServices.Controllers
 
         [HttpPut]
         // PUT: api/Perfil/5
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Put([FromBody]PerfilDTO dto)
         {
             _rep = new PerfilRepository();
@@ -85,6 +89,7 @@ namespace APIServices.Controllers
 
         [HttpDelete]
         // DELETE: api/Perfil/5
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Delete(int id)
         {
             _rep = new PerfilRepository();

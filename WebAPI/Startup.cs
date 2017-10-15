@@ -1,23 +1,24 @@
 ﻿
-//[assembly: OwinStartup(typeof(APIServices.Startup))]
+using Infra.Mappers;
+using Microsoft.Owin;
+using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Ninject;
+using Ninject.Web.Common.OwinHost;
+using Ninject.Web.WebApi.OwinHost;
+using Owin;
+using System;
+using System.Net.Http.Formatting;
+using System.Reflection;
+using System.Web.Http;
+
+[assembly: OwinStartup(typeof(APIServices.Startup))]
 
 namespace APIServices
 {
-    using Infra.Mappers;
-    using Microsoft.Owin;
-    using Microsoft.Owin.Cors;
-    using Microsoft.Owin.Security.OAuth;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Serialization;
-    using Ninject;
-    using Ninject.Web.Common.OwinHost;
-    using Ninject.Web.WebApi.OwinHost;
-    using Owin;
-    using System;
-    using System.Net.Http.Formatting;
-    using System.Reflection;
-    using System.Web.Http;
-    using System.Web.Http.Cors;
+   
 
     public class Startup
     {
@@ -55,9 +56,9 @@ namespace APIServices
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            // Serviços e configuração da API da Web
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
+            //// Serviços e configuração da API da Web
+            //var cors = new EnableCorsAttribute("*", "*", "*");
+            //config.EnableCors(cors);
             AutoMapperConfig.RegisterMappings();
 
         }
