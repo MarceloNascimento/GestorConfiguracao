@@ -30,8 +30,9 @@
 
             function goLogado() {
                 loadAnimeService.show();
-                vm.tela = 'Logasdo';
+                vm.tela = 'Logado';
                 vm.user = [];
+                $location.path("/consumir");
                 loadAnimeService.close();
             }
 
@@ -40,12 +41,12 @@
                 loadAnimeService.show();
                 console.info(vm.usuario);
                 authService.login(vm.usuario).then(function () {
-                    console.log("executando authService");
+                    console.log("executando authService");                   
                     vm.goLogado();
                 }).catch(function (response) {
                     console.log("WebAPI access denied");
                     vm.LoginError = "Usuário ou senha inválidos.";
-                    // $location.path('/404');
+                    loadAnimeService.close();
                 });
 
             }

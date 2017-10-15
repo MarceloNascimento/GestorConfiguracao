@@ -81,3 +81,18 @@
         transform: rotate(360deg);
     }
 }
+
+.square {
+    display: inline-block;
+    margin-left: 0;
+    width: 80%;
+    padding-bottom: 0%; /* = width for a 1:1 aspect ratio */
+    overflow: hidden;    
+}
+
+.content-square {
+    position: relative;
+    height: 30%; /* = 100% - 2*10% padding */
+    width: 90%; /* = 100% - 2*5% padding */
+    padding: 10%;
+}

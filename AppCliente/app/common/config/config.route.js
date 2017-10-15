@@ -16,6 +16,9 @@ app.config(function ($routeProvider, $locationProvider) {
         }).when('/Configuracoes', {
             templateUrl: '../app/views/Configuracoes/index.html',
             controllerAs: 'vm',
+        }).when('/consumir', {
+            templateUrl: '../app/views/Configuracoes/consumir.html',
+            controllerAs: 'vm',
         }).when('/Usuarios', {
             templateUrl: '../app/views/Usuarios/index.html',
             controllerAs: 'vm',

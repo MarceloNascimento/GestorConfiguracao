@@ -167,6 +167,7 @@
     <Content Include="app\services\configuracaoService.js" />
     <Content Include="app\services\perfilService.js" />
     <Content Include="app\services\usuarioService.js" />
+    <Content Include="app\views\Configuracoes\consumir.html" />
     <Content Include="app\views\Configuracoes\index.html" />
     <Content Include="app\views\error\404.html" />
     <Content Include="app\views\error\accessDenied.html" />

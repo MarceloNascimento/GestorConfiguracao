@@ -98,7 +98,17 @@
 
             };
 
+            vm.getConfigConsumida = function (codigo) {
+                configuracaoService.GetById(codigo, function (resp) {
+                    if (resp !== null) {
+                        console.log(resp);
+                        vm.configConsumida = resp.data;
+                    }
+                });
+            };
 
+
+           
             vm.loadGrid();
 
         }]);

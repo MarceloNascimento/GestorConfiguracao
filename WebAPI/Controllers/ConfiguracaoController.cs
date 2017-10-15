@@ -19,7 +19,7 @@ namespace APIServices.Controllers
         // GET: api/Configuracao
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Consultor")]
         public IList<ConfiguracaoDTO> Get()
         {
             _rep = new ConfiguracaoRepository();
@@ -29,7 +29,7 @@ namespace APIServices.Controllers
 
         // GET: api/Configuracao/5    
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Consultor")]
         public ConfiguracaoDTO Get(int id)
         {
             _rep = new ConfiguracaoRepository();
