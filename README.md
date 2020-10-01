@@ -1,2 +1,2 @@
 # GestorConfiguracao
-Aplicação de teste OAuth
+Aplicação de teste 
